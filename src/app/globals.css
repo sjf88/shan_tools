@@ -12,15 +12,113 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@theme {
+  --animate-tip-float: tip-float 1.6s ease-in-out infinite;
+  --animate-pop: pop 0.25s ease-out;
+
+  @keyframes tip-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+}
+
+@theme {
+  --color-leaf-50: #F1F7EE;
+  --color-leaf-100: #E3EFDD;
+  --color-leaf-200: #CFE3C8;
+  --color-leaf-300: #A9CDA0;
+  --color-leaf-500: #4F8A66;
+  --color-leaf-600: #2F6B4F;
+  --color-leaf-700: #24553E;
+  --color-leaf-900: #1C3B2C;
+  --color-cream: #FFFBF0;
+  --color-sun: #F2CC6B;
+}
+
+@theme {
+  --color-mist-50: #F5F9FC;
+  --color-mist-100: #EAF2F8;
+  --color-mist-200: #D6E5F0;
+  --color-mist-300: #B7D0E2;
+  --color-mist-400: #8FB3CE;
+  --color-mist-500: #6B96B8;
+  --color-mist-600: #557E9F;
+  --color-mist-700: #446581;
+  --color-mist-900: #2B4053;
+  --color-sage: #9CC5B4;
+}
+
+/* 暗色模式：黑 + 黃。直接覆寫色票變數，所有使用這些色票的元件會自動切換 */
+:root.dark {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
+
+  --color-white: #121212;
+
+  --color-mist-50: #0b0b0b;
+  --color-mist-100: #161616;
+  --color-mist-200: #2a2a2a;
+  --color-mist-300: #3d3d3d;
+  --color-mist-400: #8f8a73;
+  --color-mist-500: #facc15;
+  --color-mist-600: #eab308;
+  --color-mist-700: #fde68a;
+  --color-mist-900: #fef9e7;
+  --color-sage: #fde68a;
+
+  --color-leaf-50: #0b0b0b;
+  --color-leaf-100: #161616;
+  --color-leaf-200: #2a2a2a;
+  --color-leaf-300: #3d3d3d;
+  --color-leaf-500: #facc15;
+  --color-leaf-600: #facc15;
+  --color-leaf-700: #eab308;
+  --color-leaf-900: #fef9e7;
+  --color-cream: #161616;
+  --color-sun: #facc15;
+
+  --color-slate-50: #161616;
+  --color-slate-100: #1f1f1f;
+  --color-slate-200: #2a2a2a;
+  --color-slate-300: #3f3f3f;
+  --color-slate-400: #8a8a8a;
+  --color-slate-500: #a3a3a3;
+  --color-slate-600: #c4c4c4;
+  --color-slate-700: #e5e5e5;
+  --color-slate-800: #f5f5f5;
+  --color-slate-900: #ffffff;
+}
+
+body {
+  transition: background-color 0.2s, color 0.2s;
+}
+
+@theme {
+  --animate-shake: shake 0.35s ease-in-out infinite;
+  --animate-stick: stick 1.4s ease-out forwards;
+
+  @keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-12deg); }
+    75% { transform: rotate(12deg); }
+  }
+
+  @keyframes stick {
+    0%, 60% { translate: 0 0; }
+    100% { translate: 0 -28px; }
+  }
 }
